@@ -1,0 +1,15 @@
+<?php 
+	require "config.php";
+	mysql_connect(DB_Host,DB_LOGIN,DB_PASS);
+	myslq_select_db(DB_BDD);
+
+	$sql="SELECT titre, id FROM news";
+	$req = mysql_query($sql) or die ('Vous être sur une page erreur!<br/>' .sql. "<br/>" .mysql_error());
+	while($data=mysql_fetch_assoc($req))
+	{
+		echo "<a href=\ Article.php?id={$data["id"]}\ ">{$data["titre"]}</;
+		$sql="SELECT id FROM comment WHERE news_id={$data{"id"}}";
+		$req2 = mysql_query($sql) or die('Vous être sur une page erreur!<br/>'.sql.'<br/>'.mysql_error.());
+		echo "(".mysql_num_rows($req2).")<br/>";
+	}
+?>
