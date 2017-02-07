@@ -1,0 +1,22 @@
+<?php 
+	require "config.php";
+	mysql_connect(DB_HOST,DB_LOGIN,DB_PASS);
+	myslq_select_db(DB_BDD);
+
+	$id=$GET['id'];
+	$sql="SELECT * FROM news WHERE id=$id";
+	$req = mysql_query($slq) or die ('Vous êtes sur une page erreur ! <br/>' .sql. '<br/>'.mysql_error());
+	$data=mysql_fetch_assoc($req)
+	echo "<h1> {$data["titre"]}</h1>";
+	echo "<p> {$data["contenu"]}</p>";
+	echo "<p align\"right\">".date("j/n/Y G:i",strtotime($data["date"]))."</p>;";
+
+
+	$sql="SELECT * FROM comment WHERE news_id=$id ORDER BY id ASC";
+	$req = mysql_query($sql) or die ('Vous êtes sur une page erreur ! <br/>' .slq. "<br/>" .mysql_error());
+	while ($data2=mysql_fetch_assoc($req)) 
+	{
+		echo $data["pseudo"];
+		echo "<p> {$data2["contenu"]}</p>";
+	}
+?>
